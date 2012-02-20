@@ -14,7 +14,6 @@ public class Carretera {
 
     private Tramo tramoMasCorto;
     private Tramo tramoMasLargo;
-    private double precioTotal;
     public int numTramoMasCorto;
     public int numTramoMasLargo;
     public double longitudTramoMasCorto;
@@ -30,18 +29,19 @@ public class Carretera {
     }
         
     public double calcularLongitudTotal() {
-        double longitud = 0;
+        double longitudTotal = 0;
         for (Tramo tramo: coleccionDeTramos) {
-            longitud += tramo.calcularLongitud();
+            longitudTotal += tramo.calcularLongitud();
         }
-        return longitud;
+        return longitudTotal;
     }
     
     public double calcularPrecioTotal() {
+        double precioTotalCarretera = 0;
         for (Tramo tramo: coleccionDeTramos) {
-            precioTotal += tramo.calcularPrecioDeTramo();
+            precioTotalCarretera += tramo.calcularPrecioDeTramo();
         }
-        return precioTotal;
+        return precioTotalCarretera;
     }
     
     public Tramo buscarTramoMasCorto() {

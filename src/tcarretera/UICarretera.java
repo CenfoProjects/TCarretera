@@ -21,9 +21,13 @@ public class UICarretera {
         System.out.println(tramo1.toString());
         carretera.procesarTramo(tramo1);
         System.out.println(carretera.toString());
-        Tramo tramo2 = new Tramo(-3, -9, 5, 1, "asfalto");
+        Tramo tramo2 = new Tramo(4, 1, -3, -9, 5, 1, "asfalto");
         System.out.println(tramo2.toString());
+        System.out.println(tramo1.toString());
+
         carretera.procesarTramo(tramo2);
+        System.out.println(tramo1.toString());
+
         System.out.println(carretera.toString());
         
 

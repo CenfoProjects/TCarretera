@@ -13,10 +13,10 @@ public class Tramo {
     
     private static int cantTramos;
     private int numTramo;
-    private static double x1;
-    private static double y1;
-    private static double x2;
-    private static double y2;
+    private double x1;
+    private double y1;
+    private double x2;
+    private double y2;
     private double anchoTramo;
     private double difNivel;
     private String tipoMaterial;
@@ -25,26 +25,12 @@ public class Tramo {
     public Tramo(double px1, double py1, double px2, double py2, double panchoTramo, double pdifNivel, String ptipoMaterial) {
         cantTramos++;
         setNumTramo(cantTramos);
-        if(cantTramos < 2) {
-            setX1(px1);
-            setY1(py1);
-        }
+        setX1(px1);
+        setY1(py1);
         setX2(px2);
         setY2(py2);
         setAnchoTramo(panchoTramo);
         setDifNivel(pdifNivel);
-        setTipoMaterial(ptipoMaterial);
-    }
-
-    public Tramo(double px2, double py2, double anchoTramo, double difNivel, String ptipoMaterial) {
-        cantTramos++;
-        setNumTramo(cantTramos);
-        setX1(getX2());
-        setY1(getY2());
-        setX2(px2);
-        setY2(py2);
-        setAnchoTramo(anchoTramo);
-        setDifNivel(difNivel);
         setTipoMaterial(ptipoMaterial);
     }
 
@@ -85,7 +71,7 @@ public class Tramo {
     }
 
     private void setX1(double x1) {
-        Tramo.x1 = x1;
+        this.x1 = x1;
     }
 
     private double getX2() {
@@ -93,7 +79,7 @@ public class Tramo {
     }
 
     private void setX2(double x2) {
-        Tramo.x2 = x2;
+        this.x2 = x2;
     }
 
     public double getY1() {
@@ -101,7 +87,7 @@ public class Tramo {
     }
 
     private void setY1(double y1) {
-        Tramo.y1 = y1;
+        this.y1 = y1;
     }
 
     private double getY2() {
@@ -109,7 +95,7 @@ public class Tramo {
     }
 
     private void setY2(double y2) {
-        Tramo.y2 = y2;
+        this.y2 = y2;
     }
         
     private double calcularPrecioDelMaterial() {
