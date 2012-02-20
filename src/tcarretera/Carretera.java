@@ -1,19 +1,17 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package tcarretera;
 
 import java.util.ArrayList;
 
 /**
  *
- * @author JPMC
+ * @author Jose P. Medrano
  */
 public class Carretera {
 
     private Tramo tramoMasCorto;
     private Tramo tramoMasLargo;
+    private Tramo ultimoTramoRegistrado;
     public int numTramoMasCorto;
     public int numTramoMasLargo;
     public double longitudTramoMasCorto;
@@ -24,8 +22,14 @@ public class Carretera {
         
     }
     
-    public void procesarTramo(Tramo tramo) {
-       coleccionDeTramos.add(tramo);
+    public boolean tramoProcesado(Tramo tramo) {
+       if (tramo.calcularRelacInclin() > 0 && tramo.calcularRelacInclin() <= 30 && tramo.calcularLongitud() <= 1000) {
+        coleccionDeTramos.add(tramo);
+        setUltimoTramoRegistrado(tramo);
+        return true;
+       } else {
+           return false;
+       }
     }
         
     public double calcularLongitudTotal() {
@@ -87,6 +91,16 @@ public class Carretera {
     public int getNumTramoMasLargo() {
         return buscarTramoMasLargo().getNumTramo();
     }
+
+    public Tramo getUltimoTramoRegistrado() {
+        return ultimoTramoRegistrado;
+    }
+
+    public void setUltimoTramoRegistrado(Tramo ultimoTramoRegistrado) {
+        this.ultimoTramoRegistrado = ultimoTramoRegistrado;
+    }
+    
+    
 
     
     @Override

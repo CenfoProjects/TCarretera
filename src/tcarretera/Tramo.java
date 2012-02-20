@@ -1,13 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package tcarretera;
 
 /**
  *
  * @author Jose P. Medrano
- * @author Daniela Brizuela
  */
 public class Tramo {
     
@@ -74,11 +70,11 @@ public class Tramo {
         this.x1 = x1;
     }
 
-    private double getX2() {
+    public double getX2() {
         return x2;
     }
 
-    private void setX2(double x2) {
+    public void setX2(double x2) {
         this.x2 = x2;
     }
 
@@ -90,7 +86,7 @@ public class Tramo {
         this.y1 = y1;
     }
 
-    private double getY2() {
+    public double getY2() {
         return y2;
     }
 
@@ -137,7 +133,7 @@ public class Tramo {
     }
     
     public double calcularAreaDeTramo(){
-        double areaTramo =  getAnchoTramo() * calcularLongitud() * 1000;
+        double areaTramo =  1000 * getAnchoTramo() * calcularLongitud();
         return areaTramo;
     }
     
