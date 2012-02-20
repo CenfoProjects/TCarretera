@@ -11,7 +11,7 @@ package tcarretera;
  */
 public class Tramo {
     
-    private static int cantTramos = 0;
+    private static int cantTramos;
     private int numTramo;
     private static double x1;
     private static double y1;
@@ -19,10 +19,10 @@ public class Tramo {
     private static double y2;
     private double anchoTramo;
     private double difNivel;
-    private int tipoMaterial;
+    private String tipoMaterial;
 
     
-    public Tramo(double px1, double py1, double px2, double py2, double panchoTramo, double pdifNivel, int ptipoMaterial) {
+    public Tramo(double px1, double py1, double px2, double py2, double panchoTramo, double pdifNivel, String ptipoMaterial) {
         cantTramos++;
         setNumTramo(cantTramos);
         if(cantTramos < 2) {
@@ -36,13 +36,16 @@ public class Tramo {
         setTipoMaterial(ptipoMaterial);
     }
 
-    public Tramo(double px2, double py2, double anchoTramo, double difNivel, int ptipoMaterial) {
+    public Tramo(double px2, double py2, double anchoTramo, double difNivel, String ptipoMaterial) {
+        cantTramos++;
+        setNumTramo(cantTramos);
         setX1(getX2());
         setY1(getY2());
         setX2(px2);
         setY2(py2);
         setAnchoTramo(anchoTramo);
         setDifNivel(difNivel);
+        setTipoMaterial(ptipoMaterial);
     }
 
     public int getNumTramo() {
@@ -69,11 +72,11 @@ public class Tramo {
         this.difNivel = difNivel;
     }
 
-    public int getTipoMaterial() {
+    public String getTipoMaterial() {
         return tipoMaterial;
     }
 
-    private void setTipoMaterial(int tipoMaterial) {
+    private void setTipoMaterial(String tipoMaterial) {
         this.tipoMaterial = tipoMaterial;
     }
 
@@ -110,25 +113,20 @@ public class Tramo {
     }
         
     private double calcularPrecioDelMaterial() {
-        double precioDelTramo;
-        switch(getTipoMaterial()) {
-            case 1: //caso adoquin
-                precioDelTramo = 6000;
-                break;
-            case 2: //caso asfalto
-                precioDelTramo = 17000;
-                break;
-            case 3: //caso material selecto
-                precioDelTramo = 4000;
-                break;
-            default:
-                precioDelTramo = 0;
-                break;
+        double precioDelMaterial;
+        if ("adoquin".equals(getTipoMaterial())) {
+            precioDelMaterial = 6000;
+        } else if ("asfalto".equals(getTipoMaterial())) {
+            precioDelMaterial = 17000;
+        } else if ("material selecto".equals(getTipoMaterial())){
+            precioDelMaterial = 4000;
+        } else {
+            precioDelMaterial = 0;
         }
-        return precioDelTramo;
+        return precioDelMaterial;
     }
     
-    private double calcularLongitud () {
+    public double calcularLongitud () {
         double longitud = Math.sqrt((Math.pow(getX2() - getX1(), 2)) + Math.pow(getY2() - getY1(), 2));
         return longitud;
     }
@@ -153,7 +151,7 @@ public class Tramo {
     }
     
     public double calcularAreaDeTramo(){
-        double areaTramo = 1000 * getAnchoTramo() * calcularLongitud();
+        double areaTramo =  getAnchoTramo() * calcularLongitud() * 1000;
         return areaTramo;
     }
     
@@ -161,12 +159,22 @@ public class Tramo {
         double precioTramo = calcularAreaDeTramo() * calcularPrecioDelMaterial();
         return precioTramo;
     }
-    
-    
-    
-    
-    
-    
+
+    @Override
+    public String toString() {
+        String estado = "Tramo: " + getNumTramo() +  "\n";
+        estado += "Coordenadas: " + "x1: " + getX1() + ", y1: " + getY1() + ", x2:" + getX2() + ", y2:" + getY2() + "\n";
+        estado += "Longitud: " + calcularLongitud() + "\n";
+        estado += "Precio: " + calcularPrecioDeTramo() + "\n";
+        estado += "Clasificacion: " + clasificarTramo() + "\n";
+        estado += "Area: " + calcularAreaDeTramo() + "\n";
+        estado += "Relacion de inclinacion: " + calcularRelacInclin() + "\n";
+        estado += "Diferencia de nivel: " + getDifNivel() + "\n";
+        estado += "Ancho: " + getAnchoTramo() + "\n";
+        estado += "Tipo material: " + getTipoMaterial() + "\n";
         
+        return estado;  
+    }
+    
     
 }
